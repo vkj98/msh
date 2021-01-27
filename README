@@ -1,0 +1,12 @@
+My attempt to write a minimal shell for GNU+Linux environment
+
+What I wish to implement
+
+1. Bare minimum to take a command with arguments from stdin and spawn a child process to execute it.
+2. Abitlity to redirect I/O to files
+3. Ability to chain multiple commands using pipes
+4. Run the children in background it & is specified at the end of the commands
+5. !! can run the previous command again
+
+Note :
+I will obviously skip checks everywhere. Code will assume a lot of stuff and its okay. My only aim is to learn how child processes are spawned and how pipes work.
