@@ -41,7 +41,16 @@ by the shell
 */
 enum special_command check_special_command(char commands[][MAX_COMMAND_LENGTH])
 {
-    return e_INVALID;
+    enum special_command ret_val = e_INVALID;
+    if(strcmp(commands[0], "exit") == 0)
+    {
+        ret_val = e_EXIT_COMMAND;
+    }
+    else if(strcmp(commands[0], "!!") == 0)
+    {
+        ret_val = e_PREVIOUS_COMMAND;
+    }
+    return ret_val;
 }
 
 /*
@@ -52,6 +61,18 @@ array
 int find_pipes(char command_list[][MAX_COMMAND_LENGTH], 
             int *pipe_indices)
 {
+    int word_counter = 0;
+    int index_counter = 0;
+    while(command_list[word_counter][0] != 0)
+    {
+        if(strcmp(command_list[word_counter], "|") == 0)
+        {
+            pipe_indices[index_counter++] = word_counter;
+            printf("Pipe at index %d \n", word_counter);
+        }
+        word_counter++;
+    }
+    pipe_indices[index_counter] = 0;
     return 0;
 }
 
