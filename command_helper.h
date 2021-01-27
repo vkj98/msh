@@ -5,6 +5,9 @@ This file has the basic commands that will be used to parse commands and run the
 #ifndef __COMMAND_HELPER_H__
 #define __COMMAND_HELPER_H_
 
+#include <string.h>
+#include <stdio.h>
+
 //A few assumptions regarding size. I will hardcode these.
 #define MAX_COMMAND_LENGTH 10
 #define MAX_NO_OF_COMMANDS 20

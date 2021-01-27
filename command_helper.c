@@ -9,6 +9,28 @@ int separate_arguments(char* command_line,
             char command_list[][MAX_COMMAND_LENGTH], 
             int *b_background_execution)
 {
+    int displacement = 0;
+    int ret = 0;
+    int position = 0;
+
+    //Keep on reading until we are getting words
+    while (ret = sscanf(command_line + displacement, "%s", command_list[position++]) > 0)
+    {
+        //printf("Read %s with return value %d", command_list[position-1], ret);
+        displacement += strlen(command_list[position - 1]) + 1;
+        //printf("word is of length %lu\n", strlen(command_list[position-1]));
+    }
+    position--;
+    //we read words and stored then in postions from 0 to position-1. At position we will
+    //put a word that has 0 as the first character. This is our terminator
+    //printf("Zeroing position %d\n", position);
+    command_list[position][0] = 0;
+    if(strcmp(command_list[position-1], "&") == 0)
+    {
+        *b_background_execution = 1;
+        command_list[position-1][0] = 0;
+        //printf("Zeroing position %d\n", position-1);
+    }
     return 0;
 }
 
