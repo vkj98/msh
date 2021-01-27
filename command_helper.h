@@ -7,11 +7,14 @@ This file has the basic commands that will be used to parse commands and run the
 
 #include <string.h>
 #include <stdio.h>
+#include <unistd.h>
 
 //A few assumptions regarding size. I will hardcode these.
 #define MAX_COMMAND_LENGTH 10
 #define MAX_NO_OF_COMMANDS 20
 #define MAX_COMMAND_LINE_LENGTH (MAX_COMMAND_LENGTH * MAX_NO_OF_COMMANDS)
+#define READ_END_OF_PIPE 0
+#define WRITE_END_OF_PIPE 1
 
 enum special_command
 {
@@ -60,5 +63,14 @@ void execute_commands(char commands[][MAX_COMMAND_LENGTH],
                 int *pipe_indices, 
                 int b_background_execution);
 
+
+/*
+Spawn the child with given properties
+*/
+int spawn_child(char commands[][MAX_COMMAND_LENGTH],  
+                int left_index,
+                int rigth_index,
+                int *stdin_fd,
+                int *stdout_fd);
 
 #endif
