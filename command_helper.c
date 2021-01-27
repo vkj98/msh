@@ -100,7 +100,7 @@ void execute_commands(char commands[][MAX_COMMAND_LENGTH],
                 int *pipe_indices, 
                 int b_background_execution)
 {
-    printf("Execute command\n");
+    //printf("Execute command\n");
     int index_count = 0;
 
     int no_of_commands = 0;
@@ -197,7 +197,7 @@ int spawn_child(char commands[][MAX_COMMAND_LENGTH],
                 int *input_fid,
                 int *output_fid)
 {
-    printf("spawning a child with li %d and ri %d: \n", left_index, right_index);
+    //printf("spawning a child with li %d and ri %d: \n", left_index, right_index);
     int input_from_file = 0;
     int output_to_file = 0;
     char output_file_name[MAX_COMMAND_LENGTH];
@@ -205,11 +205,11 @@ int spawn_child(char commands[][MAX_COMMAND_LENGTH],
     int input_index = 0;
     int output_index = 0;
 
-    for(int i=left_index; i<=right_index; i++)
-    {
-         printf("%s ", commands[i]);
-    }
-    printf("\n");
+    // for(int i=left_index; i<=right_index; i++)
+    // {
+    //      printf("%s ", commands[i]);
+    // }
+    // printf("\n");
     int counter = 0;
     //while(commands[counter][0] != 0)
     for(counter=left_index; counter<=right_index;)
@@ -246,7 +246,7 @@ int spawn_child(char commands[][MAX_COMMAND_LENGTH],
     {
         //child process
         //If redirect I/O to file then do this first
-        printf("Inside child\n");
+        //printf("Inside child\n");
         int in_fd = 0;
         int out_fd = 0;
         if(input_from_file)
@@ -276,15 +276,15 @@ int spawn_child(char commands[][MAX_COMMAND_LENGTH],
         }
         char* arguments[MAX_NO_OF_COMMANDS];
         int i = 0;
-        fprintf(stderr, "Li and Ri are %d and %d\n", left_index, right_index);
+        //fprintf(stderr, "Li and Ri are %d and %d\n", left_index, right_index);
         for(i=left_index; i<=right_index; i++)
         {
             arguments[i-left_index] = commands[i];
-            fprintf(stderr, "VK : %s ", commands[i]);
+            //fprintf(stderr, "VK : %s ", commands[i]);
         }
-        fprintf(stderr, "Null at location %d\n", i);
+        //fprintf(stderr, "Null at location %d\n", i);
         arguments[i-left_index] = (char*)NULL;
-        fprintf(stderr, "Calling execvp\n");
+        //fprintf(stderr, "Calling execvp\n");
         execvp(commands[left_index], arguments);
         //execvp will be called here
     }
